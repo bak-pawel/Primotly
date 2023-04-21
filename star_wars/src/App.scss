@@ -1,7 +1,20 @@
 @import "~bootstrap/scss/bootstrap";
 
 .max__width__row{
-  background-color: red;
   width: 90%;
   margin-left: 5%;
+}
+.popover {
+  max-width: 60%;
+  background-color: darkgray;
+}
+.bs-popover-auto[data-popper-placement^=right]>.popover-arrow:after, .bs-popover-end>.popover-arrow:after {
+  border-right-color: darkgray;
+}
+.size__column{
+  width: 29%;
+}
+.height__size{
+  max-height: 200px;
+  overflow: auto;
 }

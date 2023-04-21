@@ -6,7 +6,7 @@ export const getUsers =(url,setData)=>(
 
 export const getHomeworldData =(dataIn, setData)=>{
     let listWithURLS = []
-    dataIn.results.forEach(element=>{
+    dataIn.forEach(element=>{
       if(!listWithURLS.includes(element.homeworld)){
         listWithURLS.push(element.homeworld)
       }
