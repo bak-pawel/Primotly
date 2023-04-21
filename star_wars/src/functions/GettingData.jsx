@@ -16,3 +16,10 @@ export const getHomeworldData =(dataIn, setData)=>{
       ))
       .then(data =>setData(data))
 }
+
+export const getFilmData = (dataIn, setData)=>{
+  Promise.all(dataIn.map(url => 
+      fetch(url).then(resp => resp.json())
+    ))
+    .then(data =>setData(data))
+}
