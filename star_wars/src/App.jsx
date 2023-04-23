@@ -11,17 +11,22 @@ const App = () => {
   const [families, setFamilies] = useState()
   const [name, setName] = useState()
   const [responseToRenderPage, setResponseToRenderPage] = useState()
+  const [renderTable, setRenderTable]=useState(false)
+
   useEffect(() => {
     if (response) {
+      let listToTest 
       if (name === undefined) {
-        setResponseToRenderPage(response.results)
+        listToTest = response.results
+        setResponseToRenderPage(listToTest)
       } else {
-        setResponseToRenderPage(response.results.filter(element => (element.name).toLowerCase().includes(name.toLowerCase())))
+        listToTest = response.results.filter(element => (element.name).toLowerCase().includes(name.toLowerCase()))
+        setResponseToRenderPage(listToTest)
       }
     }
   }, [response]);
+  
   useEffect(() => {
-    console.log(responseToRenderPage)
     if(responseToRenderPage !== undefined){
       getHomeworldData(responseToRenderPage, setFamilies);
     }
@@ -32,7 +37,7 @@ const App = () => {
       <Form className="d-flex">
         <Form.Control
           type="search"
-          placeholder="Search"
+          placeholder="Type to search"
           className="me-2"
           aria-label="Search"
           onChange={(e) => setName(e.target.value)}
@@ -40,10 +45,11 @@ const App = () => {
         <Button variant="dark" onClick={() => {
           setFamilies()
           setResponse()
+          setRenderTable(true)
           getUsers("https://swapi.dev/api/people/", setResponse)
-        }}>Search bar</Button>
+        }}>Search</Button>
       </Form>
-      {RenderTableCharacters(responseToRenderPage, families)}
+      {RenderTableCharacters(responseToRenderPage, families, renderTable)}
     </Row>
   )
 }
